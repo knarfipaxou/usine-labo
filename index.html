@@ -232,6 +232,52 @@ svg .hot.bad .hz{fill:rgba(255,90,70,.25);stroke:#ff6b5a;stroke-dasharray:none;a
  .levels{padding:12px}
  .mbox{padding:10px}
 }
+/* ===== images des règles et mode Par cœur ===== */
+.ico{display:block;width:100%;height:auto}
+.rcard .rico{float:right;width:132px;margin:0 0 6px 10px;background:#fff;border-radius:8px;border:1px solid rgba(0,0,0,.12);padding:2px}
+.pcwrap{max-width:760px;margin:12px auto 0;padding:0 20px}
+.pcbtn{width:100%;display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 16px;color:#f6e7c8;font-size:15px;background:linear-gradient(180deg,#2f5a3a,#1c3a24);border-color:#7fbf6a;cursor:pointer}
+.pcbtn b{font-size:21px;color:#ffd77a}.pcbtn .pcnum{font-size:14px;color:#d8ffd0}
+.pdfbtn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.pcstats{padding:12px 16px;margin:10px 0}
+.pcbarw{height:16px;border-radius:8px;background:#24170d;border:1px solid #8a5d1c;overflow:hidden}
+.pcbarf{height:100%;background:linear-gradient(90deg,#3f9a4a,#8fdc8f)}
+.pcnums{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:8px;font-size:16px}
+.pcfam .famh{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pcfamgo{font-size:13px;padding:5px 10px;margin-left:auto}
+.pcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-bottom:8px}
+.pcchip{display:flex;align-items:center;gap:8px;text-align:left;border:3px solid #999;border-radius:12px;padding:6px 8px;background:#f2f2f2;color:#1d1d1d;font-size:14.5px;cursor:pointer;font-family:inherit}
+.pcchip .pcico{flex:0 0 78px;background:#fff;border-radius:6px}
+.pcchip .pct{flex:1;font-weight:bold;line-height:1.25}
+.pcchip .kind{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.8px;font-weight:bold}
+.pcchip.D .kind{color:#1f5fb8}.pcchip.P .kind{color:#b4520a}
+.pcchip .pcst{font-size:12px;white-space:nowrap;align-self:flex-end}
+.pcchip.st-sue{border-color:#3f9a4a;background:#e3f6e4}
+.pcchip.st-revoir{border-color:#c4553f;background:#ffe9e2}
+.pcbox{max-width:900px;margin:0 auto;padding:14px 16px 30px}
+.pchead{display:flex;gap:16px;align-items:center;border-radius:14px;padding:12px;border:3px solid;color:#1d1d1d}
+.pchead.D{background:#eaf3fc;border-color:#1f5fb8}.pchead.P{background:#fff3e4;border-color:#d4650a}
+.pcbig{flex:0 0 240px;background:#fff;border-radius:10px;padding:4px;border:1px solid rgba(0,0,0,.12)}
+.kindchip{font-size:13px;text-transform:uppercase;letter-spacing:1px;border-radius:8px;padding:2px 9px;color:#fff;font-weight:bold}
+.kindchip.D{background:#1f5fb8}.kindchip.P{background:#d4650a}
+.pctitle{font-size:26px;font-weight:bold;font-family:Georgia,serif;margin-top:6px}
+.pchead.D .pctitle{color:#1f5fb8}.pchead.P .pctitle{color:#b4520a}
+.pcfamn{font-size:14px;opacity:.75;margin-top:4px}
+.pcprompt{background:#f7f0dc;color:#1d1d1d;border-radius:10px;padding:10px 14px;font-size:18px;margin-top:12px;line-height:1.4}
+.pcrule{margin-top:12px}.pcrule .rcard{font-size:19px;line-height:1.5}.pcrule .rcard .rt{font-size:18px}
+.pcrule .rcard .rico{width:200px}
+.pcans{margin-top:12px;min-height:70px}.pchint{font-size:15px;opacity:.8;font-weight:normal}
+.pctry{background:#f7f0dc;color:#1d1d1d;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:16px}
+.pctry .bad{background:#ffd9d0;border-bottom:2px solid #c4553f}
+.pcverdict{font-size:19px}
+@media (max-width:600px){
+ .rcard .rico{width:100px}
+ .pchead{flex-direction:column;align-items:stretch;text-align:center}.pcbig{flex:none;width:100%;max-width:300px;margin:0 auto}
+ .pctitle{font-size:22px}.pcrule .rcard .rico{float:none;width:100%;max-width:260px;margin:0 auto 8px}
+ .pcrule .rcard{font-size:17.5px}.pcprompt{font-size:16.5px}
+ .pcgrid{grid-template-columns:1fr}
+}
+.rgrid .rcard .rico{float:none;width:100%;max-width:190px;margin:0 auto 6px;display:block}
 
 </style>
 </head>
@@ -243,6 +289,7 @@ svg .hot.bad .hz{fill:rgba(255,90,70,.25);stroke:#ff6b5a;stroke-dasharray:none;a
   <div class="hero"><h1>L'Usine-Labo</h1><div class="sub">Chaque usine est une expérience. Fais tourner ses machines : J'observe, Or je sais que, Donc.</div>
    <div class="sub">Toutes les usines sont ouvertes. Commence par celle que tu veux.</div></div>
   <div class="panel rank" id="rank"></div>
+  <div class="pcwrap"><button class="panel pcbtn" id="btnPC"></button></div>
   <div class="levels" id="cards"></div>
  </div>
 </div>
@@ -260,12 +307,14 @@ svg .hot.bad .hz{fill:rgba(255,90,70,.25);stroke:#ff6b5a;stroke-dasharray:none;a
  <div id="foreman"><span class="who">👷</span><span id="fmsg"></span></div>
 </div>
 <div id="end" class="screen"><header><span class="logoslot"></span><div class="t">L'Usine-Labo</div><button class="brass hbtn sndbtn">🔊</button></header><div class="scroll" id="endBody"></div></div>
+<div id="pc" class="screen"><header><button class="brass hbtn" id="pcBack">⬅</button><div class="t">🧠 Par cœur<small>Les définitions et les propriétés, mot à mot</small></div><button class="brass hbtn sndbtn">🔊</button></header><div class="scroll" id="pcBody"></div></div>
+<div id="pcq" class="screen"><header><button class="brass hbtn" id="pcqBack">⬅</button><div class="t" id="pcqTitle">🧠 Par cœur</div><button class="brass hbtn sndbtn">🔊</button></header><div class="scroll" id="pcqBody"></div></div>
 <div id="parent" class="screen"><header><button class="brass hbtn" id="parentBack">⬅</button><div class="t">Espace parents</div></header><div class="scroll" id="parentBody"></div></div>
 
 <div class="modal sac" id="sac"><div class="panel mbox"><h3>🎒 Le sac des règles</h3><div class="mscroll" id="sacBody"></div><div class="mfoot"><span style="flex:1;align-self:center;font-size:14px;opacity:.85">Bleu = définition · Orange = propriété · Glisse une carte vers le cadre, ou touche-la.</span><button class="brass" id="sacClose">Fermer le sac</button></div></div></div>
 <div class="modal" id="papa"><div class="panel mbox"><h3>🗣️ Dis-le à papa</h3><div class="mscroll" id="ppBody"></div><div class="mfoot" id="ppFoot"></div></div></div>
 <div class="modal" id="copie"><div class="panel mbox"><h3>📜 La copie complète</h3><div class="mscroll" id="cpBody"></div><div class="mfoot"><button class="brass green" id="cpNext">Machine suivante ➡</button></div></div></div>
-<div class="modal" id="memo"><div class="panel mbox"><h3>📋 Mémo : la méthode et toutes les règles</h3><div class="mscroll" id="memoBody"></div><div class="mfoot"><button class="brass" id="memoClose">Fermer</button></div></div></div>
+<div class="modal" id="memo"><div class="panel mbox"><h3>📋 Mémo : la méthode et toutes les règles</h3><div class="mscroll" id="memoBody"></div><div class="mfoot"><a class="brass pdfbtn" href="imprimer/fiche-memo-usine-labo.pdf" target="_blank" rel="noopener">📄 Fiche mémo PDF</a><button class="brass" id="memoClose">Fermer</button></div></div></div>
 <script>
 /* ===== Scènes SVG des expériences (viewBox 600 x 380) =====
    H(id, contenu) : zone touchable. Chaque zone a un contour pointillé (toutes pareilles : bonnes et pièges). */
@@ -1255,9 +1304,90 @@ const BOSS_FIRST=[[3],[11],[7],[12],[21],[25],[32],[38]];
 const BOSS_POOL=[[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[20],[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[32],[33],[34],[35],[36],[37],[38],[39],[2,"glace"],[7,"eau"],[6,"fusion"]];
 const BOSS_N=8,BOSS_MIN=30;
 
+/* ===== Une image par règle (mêmes dessins dans le jeu et dans la fiche PDF) =====
+   Chaque image : viewBox 0 0 160 110, fond transparent. */
+const IC=(()=>{
+ const INK="#2b2b2b",GL="#4a4a4a",WA="#9fd0f2",WAs="#3a7fb8",ICE="#e3f4ff",ICEs="#5f9fd0",BL="#2f6fc0",OR="#e0731a",RED="#c0392b",GR="#2e8b57";
+ const t=(x,y,s,o)=>{o=o||{};return `<text x="${x}" y="${y}" font-family="Arial,Helvetica,sans-serif" font-size="${o.sz||10}" text-anchor="${o.a||"middle"}" fill="${o.c||INK}"${o.b?' font-weight="bold"':""}${o.i?' font-style="italic"':""}>${s}</text>`;};
+ const arrow=(x1,y1,x2,y2,c,w)=>{c=c||INK;w=w||2;const a=Math.atan2(y2-y1,x2-x1),L=7,s=0.45;
+  const p1=[x2-L*Math.cos(a-s),y2-L*Math.sin(a-s)],p2=[x2-L*Math.cos(a+s),y2-L*Math.sin(a+s)];
+  return `<line x1="${x1}" y1="${y1}" x2="${x2-4*Math.cos(a)}" y2="${y2-4*Math.sin(a)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/><polygon points="${x2},${y2} ${p1[0].toFixed(1)},${p1[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}" fill="${c}"/>`;};
+ const beaker=(x,y,w,h,lv,fill,stroke)=>{fill=fill||WA;stroke=stroke||WAs;let s="";
+  if(lv>0)s+=`<rect x="${x+1.5}" y="${y+h-lv}" width="${w-3}" height="${lv-1.5}" fill="${fill}" opacity=".85"/><line x1="${x+1.5}" y1="${y+h-lv}" x2="${x+w-1.5}" y2="${y+h-lv}" stroke="${stroke}" stroke-width="1.4"/>`;
+  return s+`<path d="M${x-3} ${y} L${x} ${y+3} V${y+h} H${x+w} V${y+3} L${x+w+3} ${y}" fill="none" stroke="${GL}" stroke-width="2" stroke-linejoin="round"/>`;};
+ const cube=(x,y,s,fill,stroke)=>{fill=fill||ICE;stroke=stroke||ICEs;const d=s*0.35;
+  return `<path d="M${x} ${y+d} L${x+d} ${y} H${x+s+d} V${y+s} L${x+s} ${y+s+d} H${x} Z" fill="${fill}" stroke="${stroke}" stroke-width="1.6"/><path d="M${x} ${y+d} H${x+s} V${y+s+d} M${x+s} ${y+d} L${x+s+d} ${y}" fill="none" stroke="${stroke}" stroke-width="1.4"/><line x1="${x+4}" y1="${y+d+5}" x2="${x+s*0.45}" y2="${y+d+5}" stroke="#fff" stroke-width="2"/>`;};
+ const circ=(x,y,r,c)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c||BL}" stroke="#123" stroke-width=".8"/>`;
+ const box=(x,y,w,h)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="#fff" stroke="${GL}" stroke-width="1.6"/>`;
+ const lattice=(x,y,cols,rows,r,c)=>{let s="";for(let j=0;j<rows;j++)for(let i=0;i<cols;i++)s+=circ(x+i*2*r+r,y+j*2*r+r,r,c);return s;};
+ const LIQ=[[0,0],[2.1,.3],[4.05,-.15],[6.1,.25],[.95,1.85],[3.05,1.7],[5.1,1.95],[7,1.6],[0,3.6],[2,3.45],[4.1,3.7],[6.05,3.5]];
+ const liquidP=(x,y,r,c,n)=>LIQ.slice(0,n||12).map(([a,b])=>circ(x+r+a*r,y+r+b*r,r,c)).join("");
+ const GAS=[[.1,.15],[.55,.08],[.85,.3],[.3,.5],[.7,.62],[.12,.85],[.5,.88],[.9,.82]];
+ const gasP=(x,y,w,h,r,c,n,mv)=>GAS.slice(0,n||8).map(([a,b],i)=>{const cx=x+r+a*(w-2*r),cy=y+r+b*(h-2*r);const ang=i*1.9;
+  return circ(cx,cy,r,c)+(mv?arrow(cx+Math.cos(ang)*(r+1),cy+Math.sin(ang)*(r+1),cx+Math.cos(ang)*(r+9),cy+Math.sin(ang)*(r+9),"#888",1.2):"");}).join("");
+ const thermo=(x,y,h,lv,c)=>{c=c||RED;return `<rect x="${x-4}" y="${y}" width="8" height="${h}" rx="4" fill="#fff" stroke="${GL}" stroke-width="1.5"/><rect x="${x-1.6}" y="${y+h-lv}" width="3.2" height="${lv}" fill="${c}"/><circle cx="${x}" cy="${y+h+5}" r="6.5" fill="${c}" stroke="${GL}" stroke-width="1.5"/>`;};
+ const flame=(x,y)=>`<path d="M${x} ${y} C${x-9} ${y-8} ${x-4} ${y-16} ${x} ${y-22} C${x+2} ${y-14} ${x+9} ${y-10} ${x} ${y} Z" fill="#ff9a1f" stroke="#c4501a" stroke-width="1.2"/><path d="M${x} ${y-2} C${x-4} ${y-6} ${x-1} ${y-11} ${x} ${y-13} C${x+2} ${y-9} ${x+4} ${y-6} ${x} ${y-2} Z" fill="#ffe14d"/>`;
+ const wisp=(x,y)=>`<path d="M${x} ${y} c-5 -5 5 -9 0 -14 c-5 -5 5 -9 0 -14" fill="none" stroke="#9aa7b3" stroke-width="2" stroke-linecap="round"/>`;
+ const axes=(x,y,w,h,lx,ly)=>`<line x1="${x}" y1="${y+h}" x2="${x}" y2="${y}" stroke="${INK}" stroke-width="1.5"/><polygon points="${x},${y-4} ${x-3},${y+3} ${x+3},${y+3}" fill="${INK}"/><line x1="${x}" y1="${y+h}" x2="${x+w}" y2="${y+h}" stroke="${INK}" stroke-width="1.5"/><polygon points="${x+w+4},${y+h} ${x+w-3},${y+h-3} ${x+w-3},${y+h+3}" fill="${INK}"/>`+(ly?t(x+3,y-1,ly,{sz:8.5,a:"start"}):"")+(lx?t(x+w,y+h+11,lx,{sz:8.5,a:"end"}):"");
+ const poly=(pts,c,w)=>`<polyline points="${pts.map(p=>p.join(",")).join(" ")}" fill="none" stroke="${c||RED}" stroke-width="${w||2.4}" stroke-linejoin="round" stroke-linecap="round"/>`;
+ const balance=(x,y,disp,obj)=>`${obj||""}<rect x="${x}" y="${y}" width="64" height="8" rx="2" fill="#c9c9c9" stroke="${GL}" stroke-width="1.4"/><path d="M${x+4} ${y+8} H${x+60} L${x+64} ${y+30} H${x} Z" fill="#e8e8e8" stroke="${GL}" stroke-width="1.4"/><rect x="${x+12}" y="${y+13}" width="40" height="13" rx="2" fill="#1d2b1d"/>${t(x+32,y+23.5,disp,{sz:10,c:"#7dff8a",b:1})}`;
+ const drop=(x,y,c)=>`<path d="M${x} ${y-6} C${x+5} ${y} ${x+4} ${y+4} ${x} ${y+4} C${x-4} ${y+4} ${x-5} ${y} ${x} ${y-6} Z" fill="${c||WA}" stroke="${WAs}" stroke-width="1"/>`;
+ const cyl=(x,y,w,h,lv,ticks)=>{let s=`<rect x="${x+1}" y="${y+h-lv}" width="${w-2}" height="${lv}" fill="${WA}" opacity=".85"/>`;const n=ticks||8;
+  for(let i=1;i<n;i++){const yy=y+h-i*h/n;s+=`<line x1="${x}" y1="${yy}" x2="${x+(i%2?5:9)}" y2="${yy}" stroke="${GL}" stroke-width="1"/>`;}
+  return s+`<path d="M${x-3} ${y} H${x} V${y+h} H${x+w} V${y} H${x+w+3}" fill="none" stroke="${GL}" stroke-width="1.8"/><rect x="${x-6}" y="${y+h}" width="${w+12}" height="4" rx="1.5" fill="${GL}"/>`;};
+ const S=inner=>`<svg class="ico" viewBox="0 0 160 110" xmlns="http://www.w3.org/2000/svg" role="img">${inner}</svg>`;
+ const D={
+  etats:()=>cube(10,40,26)+t(27,96,"solide",{b:1})+beaker(62,38,36,44,26)+t(80,96,"liquide",{b:1})+`<rect x="112" y="34" width="40" height="48" rx="6" fill="none" stroke="${GL}" stroke-width="1.6" stroke-dasharray="3 2"/>`+gasP(114,36,36,44,3.2,"#9fb6c9",8)+t(132,96,"gazeux",{b:1}),
+  solide:()=>cube(18,44,30)+t(36,100,"sur la table")+`<line x1="6" y1="85" x2="68" y2="85" stroke="#8a5d1c" stroke-width="3"/>`+beaker(96,30,52,60,0)+cube(108,56,26)+t(122,104,"dans le bécher")+t(80,16,"même forme",{b:1,c:BL}),
+  liquide:()=>beaker(14,34,40,50,26)+`<path d="M100 36 V50 C88 58 86 70 86 84 H136 C136 70 134 58 122 50 V36" fill="none" stroke="${GL}" stroke-width="2"/><path d="M87.2 66 H134.8 C135.6 72 136 78 135.6 83 H86.4 C86 78 86.4 72 87.2 66 Z" fill="${WA}" opacity=".85"/>`+`<line x1="4" y1="58" x2="64" y2="58" stroke="${RED}" stroke-width="1.4" stroke-dasharray="4 3"/><line x1="76" y1="66" x2="146" y2="66" stroke="${RED}" stroke-width="1.4" stroke-dasharray="4 3"/>`+t(80,102,"surface libre horizontale",{c:RED,b:1})+t(80,16,"prend la forme du récipient",{b:1,c:BL}),
+  gaz:()=>`<path d="M60 22 H100 V30 C122 38 128 54 128 66 C128 86 112 98 80 98 C48 98 32 86 32 66 C32 54 38 38 60 30 Z" fill="#f4f8fb" stroke="${GL}" stroke-width="2"/>`+gasP(40,32,82,60,4,"#9fb6c9",8,1)+t(80,15,"occupe tout l'espace",{b:1,c:BL}),
+  fusion:()=>cube(14,40,30)+arrow(62,58,98,58,RED,3)+t(80,48,"chauffer",{c:RED})+`<ellipse cx="128" cy="80" rx="24" ry="7" fill="${WA}" stroke="${WAs}" stroke-width="1.4"/>`+cube(118,52,13)+t(36,100,"solide",{b:1})+t(128,100,"liquide",{b:1}),
+  solidif:()=>beaker(12,36,40,46,30)+arrow(62,58,98,58,BL,3)+t(80,48,"refroidir",{c:BL})+beaker(108,36,40,46,0)+`<rect x="110" y="52" width="36" height="30" fill="${ICE}" stroke="${ICEs}" stroke-width="1.5"/><line x1="114" y1="58" x2="126" y2="58" stroke="#fff" stroke-width="2"/>`+t(32,100,"liquide",{b:1})+t(128,100,"solide",{b:1}),
+  vapo:()=>beaker(20,44,44,42,24)+wisp(34,40)+wisp(50,38)+flame(42,108)+arrow(76,64,104,64,RED,3)+gasP(112,30,42,52,3.2,"#9fb6c9",8)+t(112,102,"liquide → gaz",{b:1,sz:10}),
+  liquef:()=>`<path d="M44 30 H96 L90 92 H50 Z" fill="#fff" stroke="${GL}" stroke-width="2"/><path d="M47 52 H93 L90 92 H50 Z" fill="${ICE}" opacity=".9"/>`+[[56,44],[70,38],[84,48],[60,64],[80,70],[68,82],[86,86]].map(([a,b])=>drop(a,b)).join("")+gasP(104,12,46,36,3,"#9fb6c9",5)+arrow(108,52,96,60,BL,2)+t(130,64,"vapeur d'eau",{sz:9})+t(130,76,"→ gouttes",{sz:9})+t(70,104,"verre froid : buée",{b:1}),
+  evap:()=>beaker(14,38,48,38,20)+wisp(26,34)+wisp(40,30)+wisp(54,34)+t(38,90,"à la surface",{sz:9,c:BL})+t(38,104,"évaporation",{b:1})+beaker(98,36,48,40,30)+[[108,68],[120,60],[132,70],[114,52],[136,54],[126,72]].map(([a,b])=>`<circle cx="${a}" cy="${b}" r="3.2" fill="#fff" stroke="${WAs}"/>`).join("")+flame(122,98)+t(122,22,"au sein du liquide",{sz:9,c:RED})+t(122,108,"ébullition",{b:1}),
+  tfus:()=>thermo(80,12,74,48)+`<line x1="86" y1="62" x2="118" y2="62" stroke="${BL}" stroke-width="1.5"/><line x1="86" y1="30" x2="118" y2="30" stroke="${RED}" stroke-width="1.5"/>`+t(120,66,"Tfus",{a:"start",b:1,c:BL,sz:12})+t(120,34,"Téb",{a:"start",b:1,c:RED,sz:12})+t(38,62,"fusion =",{sz:9.5,c:BL})+t(38,74,"solidification",{sz:9.5,c:BL}),
+  ident:()=>`<rect x="10" y="12" width="94" height="82" rx="6" fill="#fff" stroke="${GL}" stroke-width="1.6"/>`+t(57,28,"Carte d'identité",{b:1,sz:10})+t(18,44,"eau : Tfus = 0 °C",{a:"start",sz:9.5})+t(16,57,"eau : Téb = 100 °C",{a:"start",sz:9})+t(18,70,"cyclohexane :",{a:"start",sz:9.5})+t(18,83,"Tfus = 6 °C",{a:"start",sz:9.5})+`<circle cx="126" cy="54" r="17" fill="#eef7ff" fill-opacity=".6" stroke="${GL}" stroke-width="3"/><line x1="138" y1="66" x2="154" y2="86" stroke="${GL}" stroke-width="6" stroke-linecap="round"/>`+t(126,59,"?",{sz:16,b:1,c:BL}),
+  palier:()=>axes(18,12,130,74,"temps","T (°C)")+poly([[22,22],[52,56],[110,56],[140,80]])+`<line x1="52" y1="62" x2="110" y2="62" stroke="${BL}" stroke-width="1"/>`+t(81,73,"palier",{b:1,c:BL,sz:11})+t(81,50,"T constante",{sz:9}),
+  melpal:()=>axes(18,12,130,74,"temps","T (°C)")+poly([[22,22],[55,50],[100,64],[140,80]])+t(104,40,"pas de palier",{b:1,c:RED,sz:11})+t(104,52,"eau salée",{sz:9}),
+  coexist:()=>beaker(46,26,68,62,40)+cube(56,46,14)+cube(80,50,12)+cube(96,44,10)+t(80,104,"glace + eau liquide",{b:1})+t(80,16,"pendant le palier : 2 états",{c:BL,b:1}),
+  entre:()=>`<rect x="70" y="8" width="20" height="30" fill="#e6edf3" stroke="${GL}"/><rect x="70" y="38" width="20" height="32" fill="${WA}" stroke="${GL}"/><rect x="70" y="70" width="20" height="30" fill="${ICE}" stroke="${GL}"/>`+t(98,26,"gazeux",{a:"start",b:1})+t(98,57,"liquide",{a:"start",b:1})+t(98,89,"solide",{a:"start",b:1})+t(64,41,"Téb",{a:"end",c:RED,b:1})+t(64,73,"Tfus",{a:"end",c:BL,b:1})+arrow(30,98,30,12,INK,2)+t(30,108,"T",{b:1}),
+  pression:()=>`<path d="M4 98 L54 22 L104 98 Z" fill="#d9cbb0" stroke="${GL}" stroke-width="1.5"/><path d="M42 39 L54 22 L66 39 L58 36 L54 40 L49 36 Z" fill="#fff"/>`+t(54,14,"3 000 m : 0,7 bar",{sz:9,b:1})+t(54,74,"Téb < 100 °C",{sz:9,c:BL})+`<rect x="118" y="56" width="34" height="30" rx="4" fill="#b8bec4" stroke="${GL}" stroke-width="1.5"/><rect x="114" y="50" width="42" height="7" rx="3" fill="#8e969d" stroke="${GL}"/><rect x="132" y="42" width="6" height="8" fill="${GL}"/>`+t(135,98,"autocuiseur",{sz:8.5})+t(135,108,"1,8 bar",{sz:9,b:1}),
+  verglas:()=>`<path d="M0 78 H160 V110 H0 Z" fill="#555"/><path d="M0 76 H160 V82 H0 Z" fill="${ICE}" stroke="${ICEs}"/>`+[20,60,100,140].map(x=>`<rect x="${x}" y="92" width="20" height="4" fill="#fff"/>`).join("")+thermo(132,14,42,10,BL)+t(118,30,"−3 °C",{a:"end",b:1,c:BL,sz:11})+`<g stroke="${ICEs}" stroke-width="2" stroke-linecap="round"><line x1="40" y1="28" x2="40" y2="56"/><line x1="28" y1="35" x2="52" y2="49"/><line x1="28" y1="49" x2="52" y2="35"/></g>`+t(80,70,"eau → glace",{b:1,sz:10}),
+  masse:()=>balance(48,62,"250 g",`<rect x="64" y="40" width="32" height="22" rx="3" fill="#c88a4a" stroke="${GL}" stroke-width="1.4"/>`)+t(80,22,"masse en kg (ou g)",{b:1,c:BL})+t(80,106,"balance",{sz:9.5}),
+  volume:()=>cyl(66,14,26,76,46,10)+t(118,52,"mL",{b:1,sz:13,c:BL})+t(30,52,"m³",{b:1,sz:13})+t(80,108,"éprouvette graduée",{sz:9.5}),
+  conserve:()=>balance(6,66,"100 g",cube(26,40,18))+balance(90,66,"100 g",beaker(108,40,28,26,14))+arrow(72,54,88,54,RED,2.5)+t(80,16,"masse : pareil. volume : change",{b:1,sz:9.5,c:BL}),
+  eauvol:()=>`<path d="M22 30 V20 H34 V30 C42 34 44 38 44 44 V96 H12 V44 C12 38 14 34 22 30 Z" fill="none" stroke="${GL}" stroke-width="2"/><rect x="13.5" y="58" width="29" height="37" fill="${WA}"/>`+t(28,108,"eau",{b:1})+arrow(54,64,96,64,BL,3)+t(75,56,"gel",{c:BL})+`<path d="M118 30 V20 H130 V30 C138 34 140 38 140 44 V96 H108 V44 C108 38 110 34 118 30 Z" fill="none" stroke="${GL}" stroke-width="2"/><rect x="109.5" y="46" width="29" height="49" fill="${ICE}" stroke="${ICEs}"/><line x1="104" y1="58" x2="146" y2="58" stroke="${RED}" stroke-dasharray="3 2"/>`+arrow(150,58,150,46,RED,1.5)+t(124,108,"glace",{b:1}),
+  unL:()=>`<path d="M30 28 V16 H44 V28 C54 32 58 38 58 46 V96 H16 V46 C16 38 20 32 30 28 Z" fill="none" stroke="${GL}" stroke-width="2"/><rect x="17.5" y="44" width="39" height="51" fill="${WA}"/>`+t(37,74,"1 L",{b:1,sz:14})+t(37,108,"d'eau",{sz:9.5})+t(80,68,"=",{b:1,sz:22})+`<path d="M106 54 H146 L152 96 H100 Z" fill="#6b6b6b" stroke="${INK}" stroke-width="1.5"/><path d="M116 54 C116 40 136 40 136 54" fill="none" stroke="${INK}" stroke-width="4"/>`+t(126,82,"1 kg",{b:1,sz:14,c:"#fff"}),
+  conv:()=>t(80,22,"1 L = 1 dm³",{b:1,sz:13,c:BL})+t(80,42,"1 mL = 1 cm³",{b:1,sz:13,c:BL})+t(80,62,"1 dm³ = 1 000 cm³",{sz:11.5})+t(80,80,"1 kg = 1 000 g",{sz:11.5})+t(80,98,"1 g = 1 000 mg",{sz:11.5}),
+  tare:()=>balance(14,64,"0 g",beaker(32,38,28,26,0))+t(46,24,"1. tarer",{b:1,c:BL})+balance(88,64,"80 g",beaker(106,38,28,26,16))+t(120,24,"2. verser",{b:1,c:BL})+arrow(78,50,88,50,INK,2),
+  menisque:()=>`<rect x="40" y="10" width="40" height="88" fill="none" stroke="${GL}" stroke-width="2"/><path d="M41.2 46 C48 56 72 56 78.8 46 V97 H41.2 Z" fill="${WA}"/><path d="M41.2 46 C48 56 72 56 78.8 46" fill="none" stroke="${WAs}" stroke-width="1.8"/>`+[22,34,58,70,82].map(y=>`<line x1="40" y1="${y}" x2="50" y2="${y}" stroke="${GL}"/>`).join("")+`<line x1="40" y1="53.5" x2="54" y2="53.5" stroke="${GL}"/><line x1="18" y1="53.5" x2="118" y2="53.5" stroke="${RED}" stroke-width="1.4" stroke-dasharray="4 2"/><ellipse cx="132" cy="53.5" rx="12" ry="7" fill="#fff" stroke="${INK}" stroke-width="1.6"/><circle cx="128" cy="53.5" r="4" fill="${INK}"/>`+t(100,88,"bas du ménisque",{sz:9.5,c:RED,b:1}),
+  precis:()=>cyl(30,14,24,74,40,5)+t(42,106,"division 20 mL",{sz:8.5})+cyl(104,14,24,74,40,20)+t(116,106,"division 5 mL",{sz:8.5,b:1,c:GR})+t(80,54,"<",{sz:22,b:1}),
+  thermo:()=>beaker(46,46,68,46,34)+thermo(80,8,72,40)+t(8,20,"réservoir",{a:"start",sz:9})+t(8,31,"dans le",{a:"start",sz:9})+t(8,42,"liquide",{a:"start",sz:9})+arrow(30,47,73,84,RED,1.5),
+  graph:()=>axes(24,18,118,66,"temps (min)","température (°C)")+[[40,30],[58,44],[76,56],[94,56],[112,56],[130,72]].map(([x,y])=>`<path d="M${x-3} ${y} H${x+3} M${x} ${y-3} V${y+3}" stroke="${RED}" stroke-width="1.8"/>`).join("")+t(80,104,"Évolution de … en fonction de …",{sz:8.5,i:1}),
+  entsol:()=>box(42,20,76,66)+lattice(48,26,6,5,5.5,BL)+t(80,104,"compact et ordonné",{b:1}),
+  entliq:()=>box(42,20,76,66)+liquidP(48,44,5.5,BL,12)+t(80,104,"compact et désordonné",{b:1}),
+  entgaz:()=>box(34,14,92,74)+gasP(36,16,88,70,5,BL,8,1)+t(80,104,"dispersé et désordonné",{b:1}),
+  enttemp:()=>box(8,24,62,54)+lattice(14,34,5,3,5.5,BL)+t(39,18,"froid",{b:1,c:BL})+box(90,24,62,54)+[[100,36],[124,32],[140,48],[108,62],[132,68]].map(([x,y],i)=>circ(x,y,5.5,OR)+`<path d="M${x-9} ${y-4} l-3 2 l3 2 l-3 2" fill="none" stroke="#888" stroke-width="1"/><path d="M${x+9} ${y-4} l3 2 l-3 2 l3 2" fill="none" stroke="#888" stroke-width="1"/>`).join("")+t(121,18,"chaud",{b:1,c:RED})+t(80,98,"plus chaud = plus agitées",{b:1,sz:9.5}),
+  entnb:()=>box(8,20,58,56)+liquidP(12,46,4.5,BL,9)+t(37,90,"9 entités",{b:1})+arrow(72,48,88,48,INK,2)+box(94,20,58,56)+gasP(96,22,54,52,4.5,BL,8)+circ(132,48,4.5,BL)+t(123,90,"9 entités",{b:1})+t(80,106,"aucune ne disparaît",{sz:9,c:BL}),
+  entesp:()=>circ(30,40,8)+circ(48,40,8)+t(39,62,"proches",{b:1})+circ(92,40,8)+circ(144,40,8)+arrow(104,40,132,40,RED,1.5)+arrow(132,40,104,40,RED,1.5)+t(118,62,"éloignées",{b:1})+t(80,90,"même nombre, espacement différent",{sz:9,c:BL}),
+  heter:()=>beaker(20,26,48,58,46,"#d8b878","#8a6a2a")+[[28,72],[38,78],[52,74],[60,80],[34,64],[56,66],[44,70]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.6" fill="#7a5520"/>`).join("")+t(44,102,"eau + terre",{sz:9.5})+beaker(96,26,48,58,46)+`<rect x="97.5" y="38" width="45" height="14" fill="#f2d24a" opacity=".9"/>`+t(120,102,"vinaigrette",{sz:9.5})+t(80,14,"on voit 2 constituants",{b:1,c:BL}),
+  homog:()=>beaker(20,26,48,58,46,"#cfe9fb")+t(44,102,"eau + sel",{sz:9.5})+beaker(96,26,48,58,46,"#f3cf7a","#b98a2a")+t(120,102,"jus de pomme",{sz:9.5})+t(80,14,"un seul aspect",{b:1,c:BL}),
+  invis:()=>beaker(18,30,56,60,48,"#cfe9fb")+`<circle cx="110" cy="58" r="30" fill="#fff" stroke="${GL}" stroke-width="3"/>`+[[96,46],[112,42],[124,52],[100,62],[116,64],[106,76],[126,70]].map(([x,y],i)=>circ(x,y,3.6,i%3?BL:OR)).join("")+`<line x1="88" y1="66" x2="60" y2="70" stroke="${GL}" stroke-dasharray="2 2"/>`+t(110,102,"invisible à l'œil nu",{b:1,sz:9.5}),
+  pur:()=>box(10,22,62,56)+lattice(14,30,5,3,5.5,BL)+t(41,94,"corps pur",{b:1})+t(41,106,"1 espèce",{sz:9})+box(88,22,62,56)+[[96,34],[110,36],[124,32],[138,36],[100,50],[116,52],[132,50],[104,66],[120,68],[138,64]].map(([x,y],i)=>circ(x,y,5.5,i%2?OR:BL)).join("")+t(119,94,"mélange",{b:1})+t(119,106,"au moins 2",{sz:9}),
+  miscible:()=>beaker(20,26,48,58,46,"#d9ecc8","#6a9a4a")+t(44,100,"miscibles",{b:1})+t(44,14,"homogène",{sz:9.5,c:BL})+beaker(96,26,48,58,46)+`<rect x="97.5" y="38" width="45" height="18" fill="#f2d24a"/><line x1="97.5" y1="56" x2="142.5" y2="56" stroke="#b98a2a"/>`+t(120,100,"non miscibles",{b:1})+t(120,14,"hétérogène",{sz:9.5,c:RED}),
+  dissous:()=>beaker(14,34,44,48,34)+[[26,30],[34,24],[42,30],[30,18]].map(([x,y])=>`<rect x="${x}" y="${y}" width="4" height="4" fill="#fff" stroke="${GL}"/>`).join("")+t(36,98,"sel + eau",{sz:9.5})+arrow(64,58,84,58,INK,2)+beaker(94,34,44,48,34,"#cfe9fb")+[[102,58],[114,66],[126,56],[108,74],[130,72]].map(([x,y])=>circ(x,y,2.6,OR)).join("")+t(116,98,"dissous",{b:1})+t(80,14,"m(solution) = m(eau) + m(sel)",{sz:9,b:1,c:BL}),
+  decant:()=>beaker(28,18,72,70,58,"#e6d5aa","#8a6a2a")+`<rect x="29.5" y="72" width="69" height="14.5" fill="#8a6a2a"/>`+[[38,40],[64,34],[84,46],[52,52]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.2" fill="#8a6a2a"/>`).join("")+arrow(116,30,116,80,RED,2)+t(122,58,"gravité",{a:"start",sz:9,c:RED})+t(64,104,"dépôt au fond",{b:1}),
+  filtr:()=>`<path d="M44 14 H116 L86 52 V64 H74 V52 Z" fill="#f6f6f6" stroke="${GL}" stroke-width="2"/><path d="M52 18 H108 L80 50 Z" fill="#fff" stroke="#b9b9b9"/><path d="M60 24 H100 L80 40 Z" fill="#8a6a2a"/>`+t(120,28,"résidu",{a:"start",b:1,sz:9.5})+`<line x1="118" y1="25" x2="96" y2="30" stroke="${GL}"/>`+drop(80,72)+beaker(56,72,48,30,18)+t(116,92,"filtrat",{a:"start",b:1,sz:9.5})+`<line x1="114" y1="89" x2="100" y2="90" stroke="${GL}"/>`,
+  sephet:()=>beaker(10,40,40,46,36,"#e6d5aa","#8a6a2a")+`<rect x="11.5" y="74" width="37" height="10.5" fill="#8a6a2a"/>`+t(30,100,"décantation",{b:1,sz:9.5})+`<path d="M96 30 H144 L124 56 V66 H116 V56 Z" fill="#fff" stroke="${GL}" stroke-width="2"/><path d="M104 34 H136 L120 48 Z" fill="#8a6a2a"/>`+beaker(102,70,36,22,12)+t(120,106,"filtration",{b:1,sz:9.5})+t(80,16,"mélanges hétérogènes",{b:1,c:BL}),
+  distil:()=>`<circle cx="28" cy="70" r="16" fill="#fff" stroke="${GL}" stroke-width="2"/><path d="M15 76 A16 16 0 0 0 41 76 Z" fill="#cfe9fb"/><rect x="24" y="36" width="8" height="20" fill="#fff" stroke="${GL}" stroke-width="2"/>`+flame(28,108)+`<path d="M58 50 L104 68" stroke="#6aa7d6" stroke-width="14" stroke-linecap="round" opacity=".5"/><path d="M32 40 L120 74" stroke="${GL}" stroke-width="6" stroke-linecap="round"/><path d="M32 40 L120 74" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`+t(8,24,"vaporisation",{a:"start",sz:9,c:RED})+t(86,44,"réfrigérant",{sz:9,b:1,c:BL})+drop(124,82)+beaker(108,82,32,18,8)+t(124,109,"liquéfaction",{sz:9,c:BL})
+ };
+ return id=>D[id]?S(D[id]()):S(t(80,60,"?",{sz:30}));
+})();
+
 /* ===== L'Usine-Labo : moteur du jeu ===== */
 const KEY="usineLabo.v1";
-function freshSave(){return {v:1,sound:true,stars:{},prog:{},plays:{},stats:{ok:0,err:0,papaOk:0,papaKo:0},miss:{},boss:{best:null,hist:[],run:null}};}
+function freshSave(){return {v:1,sound:true,stars:{},prog:{},plays:{},stats:{ok:0,err:0,papaOk:0,papaKo:0},miss:{},boss:{best:null,hist:[],run:null},pc:{},pcRun:null};}
 let SAVE=(()=>{try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v===1)return Object.assign(freshSave(),s);}catch(e){}return freshSave();})();
 function save(){try{localStorage.setItem(KEY,JSON.stringify(SAVE));}catch(e){}}
 const $=id=>document.getElementById(id);
@@ -1301,7 +1431,7 @@ function ruleCard(id,extra){const r=RULES[id];return `<div class="rcard ${r.k}" 
 function methodHTML(){return `<div class="method"><b>La méthode en 3 phrases</b> (dès que la consigne dit Justifier, Expliquer, Argumenter, Pourquoi, ou « Est-ce que… ? ») :
  <ol><li><b>J'observe que…</b> : le fait précis du document, avec le chiffre et l'unité.</li><li><b>Or je sais que…</b> : la règle du cours, une définition ou une propriété.</li><li><b>Donc…</b> : la réponse à la question, en reprenant ses mots.</li></ol>
  <div class="e4"><b>Les 4 erreurs qui coûtent des points :</b><ul style="margin:4px 0;padding-left:20px"><li>Répondre « oui » ou « non » sans justifier : la question vaut 0.</li><li>Une observation sans chiffre ni unité.</li><li>Un « Or » qui répète l'observation au lieu de citer une règle du cours.</li><li>Un « Donc » qui ne répond pas à la question posée.</li></ul></div></div>`;}
-function rulesByFam(ids){return FAMS.map(f=>{const l=ids.filter(id=>RULES[id].f===f.id);if(!l.length)return "";return `<div class="fam" data-fam="${f.id}"><div class="famh">${f.ic} ${esc(f.n)}</div><div class="rgrid">${l.map(id=>ruleCard(id)).join("")}</div></div>`;}).join("");}
+function rulesByFam(ids,ico){return FAMS.map(f=>{const l=ids.filter(id=>RULES[id].f===f.id);if(!l.length)return "";return `<div class="fam" data-fam="${f.id}"><div class="famh">${f.ic} ${esc(f.n)}</div><div class="rgrid">${l.map(id=>ruleCard(id,ico?`<div class="rico">${IC(id)}</div>`:"")).join("")}</div></div>`;}).join("");}
 
 /* ---------- construction des machines ---------- */
 function mkCas(n,v,r,first){const c=CAS[n];const p=c.gen(r,v,first);
@@ -1332,6 +1462,7 @@ function renderHome(){const ts=totalStars(),rk=rankOf(ts);
   const meta=u.boss?`<span>${BOSS_N} cas · ${BOSS_MIN} min</span><span>${SAVE.boss.best!=null?"Meilleure note : "+fmt(SAVE.boss.best)+"/20":"Pas encore fait"}</span>`:`<span>${machineCount(u)} machines</span><span class="stars">${starsHTML(st)}</span>`;
   return `<button class="panel lvl ${u.boss?"boss":u.err?"err":""}" data-u="${u.id}">${badge}<span class="ic">${u.ic}</span><b>${u.boss?"":u.id+". "}${esc(u.n)}</b><span>${esc(u.d)}</span><span class="meta">${meta}</span></button>`;}).join("");
  document.querySelectorAll("#cards .lvl").forEach(b=>b.onclick=()=>openLesson(+b.dataset.u));
+ $("btnPC").innerHTML=pcHomeLabel();
  soundBtns();show("home");}
 function soundBtns(){document.querySelectorAll(".sndbtn").forEach(b=>b.textContent=SAVE.sound?"🔊":"🔇");}
 function toggleSound(){SAVE.sound=!SAVE.sound;save();soundBtns();}
@@ -1343,7 +1474,7 @@ function openLesson(uid){const u=USINES.find(x=>x.id===uid);LU=u;
  let h=`<h2>Avant de commencer</h2>${methodHTML()}`;
  if(u.err)h+=`<h2>Comment jouer</h2><div class="method">Le robot a écrit une copie. Elle contient <b>une</b> des 4 erreurs. Touche la phrase fausse, puis glisse la bonne phrase à sa place.</div>`;
  else if(u.boss)h+=`<h2>Le devoir blanc</h2><div class="method">${BOSS_N} cas tirés de toutes les usines. Tu as <b>${BOSS_MIN} minutes</b>. Pas de mémo, pas d'explication pendant le devoir : seule ta première réponse compte. Chaque cas vaut 2,5 points : J'observe 0,5, Or 1, Donc 1. Tu peux aussi le dire à papa. La correction arrive à la fin.</div>`;
- else h+=`<h2>Les règles de cette usine</h2><p style="margin:0 0 6px">Bleu = définition. Orange = propriété. Lis-les en entier : tu iras les chercher dans le sac.</p>${rulesByFam(usineRules(u))}`;
+ else h+=`<h2>Les règles de cette usine</h2><p style="margin:0 0 6px">Bleu = définition. Orange = propriété. Lis-les en entier : tu iras les chercher dans le sac.</p>${rulesByFam(usineRules(u),true)}`;
  $("lsBody").innerHTML=`<div class="lesson">${h}</div>`;$("lsBody").scrollTop=0;
  const pr=u.boss?SAVE.boss.run:SAVE.prog[u.id];
  $("lsGo").textContent=pr?(u.boss?"Reprendre le devoir ➡":`Reprendre à la machine ${pr.mi+1} ➡`):(u.boss?"Commencer le devoir ➡":"C'est parti ➡");
@@ -1561,12 +1692,13 @@ function endBoss(timeout){const run=SAVE.boss.run;if(!run)return renderHome();cl
  $("endReplay").onclick=()=>openLesson(G.u.id);$("endHome").onclick=renderHome;show("end");}
 
 /* ---------- mémo et parent ---------- */
-function openMemo(){$("memoBody").innerHTML=methodHTML()+rulesByFam(Object.keys(RULES));$("memo").classList.add("on");$("memoBody").scrollTop=0;}
+function openMemo(){$("memoBody").innerHTML=methodHTML()+rulesByFam(Object.keys(RULES),true);$("memo").classList.add("on");$("memoBody").scrollTop=0;}
 function openParent(){const s=SAVE.stats;const miss=Object.entries(SAVE.miss).sort((a,b)=>b[1]-a[1]).slice(0,8);
  $("parentBody").innerHTML=`<div class="lesson"><h2>Tableau de bord des parents</h2>
  <table class="tbl"><tr><th>Usine</th><th>Étoiles</th><th>Parties finies</th><th>En cours</th></tr>${USINES.map(u=>`<tr><td>${u.ic} ${esc(u.n)}</td><td>${u.boss?(SAVE.boss.best!=null?"meilleure note "+fmt(SAVE.boss.best)+"/20":"pas encore"):"★".repeat(SAVE.stars[u.id]||0)||"aucune"}</td><td>${SAVE.plays[u.id]||0}</td><td>${u.boss?(SAVE.boss.run?"oui":""):(SAVE.prog[u.id]?"machine "+(SAVE.prog[u.id].mi+1):"")}</td></tr>`).join("")}</table>
  <h2>Réponses</h2><table class="tbl"><tr><td>Bonnes réponses</td><td>${s.ok}</td></tr><tr><td>Erreurs</td><td>${s.err}</td></tr><tr><td>Papa a validé</td><td>${s.papaOk}</td></tr><tr><td>Papa : à revoir</td><td>${s.papaKo}</td></tr></table>
  <h2>Règles les plus ratées</h2>${miss.length?`<table class="tbl">${miss.map(([id,n])=>`<tr><td>${esc(RULES[id].t)}</td><td>${n} fois</td></tr>`).join("")}</table>`:"<p>Aucune pour l'instant.</p>"}
+ <h2>Par cœur</h2>${(()=>{const c=pcCounts();const rv=RIDS.filter(id=>pcStat(id)==="revoir");return `<table class="tbl"><tr><td>Règles sues</td><td>${c.sue} sur ${c.tot}</td></tr><tr><td>À revoir</td><td>${c.rev}</td></tr><tr><td>Pas encore récitées</td><td>${c.neu}</td></tr></table>${rv.length?`<p>À revoir : ${rv.map(id=>esc(RULES[id].t)).join(", ")}.</p>`:""}`;})()}
  <h2>Devoirs blancs</h2>${SAVE.boss.hist.length?`<table class="tbl">${SAVE.boss.hist.slice(-10).map(h=>`<tr><td>${new Date(h.d).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})}</td><td>${fmt(h.s)}/20</td></tr>`).join("")}</table>`:"<p>Pas encore fait.</p>"}
  <h2>Tout remettre à zéro</h2><p>Efface les étoiles, les parties en cours et les statistiques.</p><button class="brass red bigbtn hold" id="btnReset"><span class="fillbar"></span>🗑️ Tout effacer (appuie 2 secondes)</button></div>`;
  holdBtn($("btnReset"),2000,()=>{const snd=SAVE.sound;SAVE=freshSave();SAVE.sound=snd;save();openParent();say("Tout est effacé.");});
@@ -1577,7 +1709,7 @@ function init(){
  document.querySelectorAll(".logoslot").forEach(e=>e.innerHTML=gearLogo());
  document.querySelectorAll(".sndbtn").forEach(b=>b.onclick=toggleSound);
  document.querySelectorAll(".memobtn").forEach(b=>b.onclick=openMemo);
- $("btnParent").onclick=openParent;$("parentBack").onclick=renderHome;
+ $("btnParent").onclick=openParent;$("btnPC").onclick=openPC;$("pcBack").onclick=renderHome;$("pcqBack").onclick=openPC;$("parentBack").onclick=renderHome;
  $("lsBack").onclick=renderHome;$("lsGo").onclick=()=>startUsine(LU.id,false);$("lsNew").onclick=()=>startUsine(LU.id,true);
  $("lvBack").onclick=()=>{clearInterval(BT);renderHome();};
  $("cpNext").onclick=nextMachine;$("sacClose").onclick=closeSac;$("memoClose").onclick=()=>$("memo").classList.remove("on");
@@ -1586,6 +1718,105 @@ function init(){
 window.__T=()=>{if(!G||!$("level").classList.contains("on"))return null;const m=M();if(!m)return null;
  return {kind:m.kind,step:G.pr.step,sub:G.pr.sub,ok:m.hots?Object.keys(m.hots).filter(k=>m.hots[k].ok):null,touched:G.touched?[...G.touched]:[],rule:m.rule,donc:m.donc,pool:m.pool,bad:m.bad,type:m.type,slots:m.slots?m.slots.map(s=>m.pool.indexOf(s.ok)):null,mi:G.pr.mi,n:G.list.length,boss:G.boss};};
 document.addEventListener("DOMContentLoaded",init);
+
+/* ===== Mode « Par cœur » : réciter chaque définition et propriété, mot à mot =====
+   Aucune saisie. Papa écoute et valide, ou Lucas reconstruit la règle avec des étiquettes.
+   Statut par règle (sue / à revoir) enregistré après chaque réponse. */
+const PDF_URL="imprimer/fiche-memo-usine-labo.pdf";
+const RIDS=FAMS.flatMap(f=>Object.keys(RULES).filter(id=>RULES[id].f===f.id));
+function pcStat(id){const s=SAVE.pc[id];return s?s.s:"new";}
+function pcCounts(){let sue=0,rev=0;RIDS.forEach(id=>{const s=pcStat(id);if(s==="sue")sue++;else if(s==="revoir")rev++;});return {sue,rev,neu:RIDS.length-sue-rev,tot:RIDS.length};}
+function pcHomeLabel(){const c=pcCounts();return `🧠 <b>Par cœur</b><span>Récite les ${c.tot} définitions et propriétés. Papa vérifie.</span><span class="pcnum">✅ ${c.sue}/${c.tot} sues · 🔁 ${c.rev} à revoir</span>`;}
+/* découpe une règle en étiquettes de 2 à 5 mots, coupées après la ponctuation */
+function pcChunks(x){const w=x.split(/\s+/).filter(Boolean),at=[];let glue=false;
+ const UNIT=/^(L|mL|kg|g|mg|dm³|cm³|m³|°C|bar|m|min|cm|bars?)[.,:;)]*$/;
+ w.forEach(t=>{const prev=at[at.length-1];
+  if(prev&&(glue||(/^\d{3}\b/.test(t)&&/\d$/.test(prev))||(UNIT.test(t)&&/\d$/.test(prev))||t==="="||t==="»"||/^\d/.test(t)&&/=$/.test(prev))){at[at.length-1]=prev+" "+t;glue=t==="="||t==="«";}
+  else{at.push(t);glue=t==="«";}});
+ const cl=[];let cur=[];at.forEach(a=>{cur.push(a);if(/[,.:;!?]$/.test(a)&&!/\d[.,]$/.test(a.slice(-2)+"")){cl.push(cur);cur=[];}});if(cur.length)cl.push(cur);
+ const out=[];cl.forEach(c=>{if(c.length<=5){out.push(c.join(" "));return;}const k=Math.ceil(c.length/4),sz=c.length/k;for(let q=0;q<k;q++)out.push(c.slice(Math.round(q*sz),Math.round((q+1)*sz)).join(" "));});
+ for(let q=out.length-1;q>0;q--)if(out[q].split(" ").length===1&&!/:$/.test(out[q-1])&&out[q-1].split(" ").length<=4){out[q-1]+=" "+out[q];out.splice(q,1);}
+ return out;}
+function pcSeed(id){let h=7;for(const ch of id)h=(h*31+ch.charCodeAt(0))>>>0;return h+(SAVE.pc[id]?(SAVE.pc[id].ok+SAVE.pc[id].ko)*101:0);}
+
+/* ---------- écran principal du mode ---------- */
+function openPC(){const c=pcCounts();const run=SAVE.pcRun;
+ const pct=Math.round(c.sue/c.tot*100);
+ let h=`<div class="lesson pcmain"><h2>🧠 Par cœur</h2>
+ <div class="method">Chaque définition et chaque propriété du sac des règles, <b>mot à mot</b>. Regarde l'image et le titre, puis récite la règle à voix haute à papa. Tu peux aussi la reconstruire avec les étiquettes. Tout est ouvert : commence par celle que tu veux.</div>
+ <div class="panel pcstats"><div class="pcbarw"><div class="pcbarf" style="width:${pct}%"></div></div>
+  <div class="pcnums"><span>✅ <b>${c.sue}</b> sues sur ${c.tot}</span><span>🔁 <b>${c.rev}</b> à revoir</span><span>⚪ <b>${c.neu}</b> pas encore récitées</span></div></div>
+ <div class="row pcact">${run&&run.q&&run.i<run.q.length?`<button class="brass bigbtn green" id="pcResume">⏸ Reprendre : règle ${run.i+1} sur ${run.q.length}</button>`:""}
+  <button class="brass bigbtn" id="pcAll">▶ Réciter ${c.sue<c.tot?"les règles pas encore sues ("+(c.tot-c.sue)+")":"toutes les règles ("+c.tot+")"}</button>
+  <button class="brass bigbtn red" id="pcRev">🔁 À revoir (${c.rev})</button>
+  <a class="brass bigbtn pdfbtn" href="${PDF_URL}" target="_blank" rel="noopener">📄 Fiche mémo PDF</a></div>
+ <div id="pcRevMsg"></div>
+ <h2>Où j'en suis</h2><p style="margin:0 0 6px">Vert = sue. Rouge = à revoir. Gris = pas encore récitée. Touche une règle pour la réciter.</p>`;
+ FAMS.forEach(f=>{const ids=RIDS.filter(id=>RULES[id].f===f.id);
+  h+=`<div class="fam pcfam" data-fam="${f.id}"><div class="famh">${f.ic} ${esc(f.n)} <button class="brass pcfamgo" data-fam="${f.id}">▶ Réciter cette famille</button></div><div class="pcgrid">${ids.map(id=>{const r=RULES[id],s=pcStat(id);
+   return `<button class="pcchip ${r.k} st-${s}" data-rule="${id}"><span class="pcico">${IC(id)}</span><span class="pct"><span class="kind">${r.k==="D"?"Définition":"Propriété"}</span>${esc(r.t)}</span><span class="pcst">${s==="sue"?"✅ sue":s==="revoir"?"🔁 à revoir":"⚪ à réciter"}</span></button>`;}).join("")}</div></div>`;});
+ h+=`</div>`;
+ $("pcBody").innerHTML=h;
+ if($("pcResume"))$("pcResume").onclick=()=>{show("pcq");renderPCQ();};
+ $("pcAll").onclick=()=>{const q=RIDS.filter(id=>pcStat(id)!=="sue");pcStart(q.length?q:RIDS.slice(),false,"toutes");};
+ $("pcRev").onclick=()=>{const q=RIDS.filter(id=>pcStat(id)==="revoir");if(!q.length){$("pcRevMsg").innerHTML=`<div class="okmsg">Aucune règle à revoir pour l'instant. Récite d'abord les autres.</div>`;return;}pcStart(q,true,"revoir");};
+ document.querySelectorAll(".pcfamgo").forEach(b=>b.onclick=e=>{e.stopPropagation();const ids=RIDS.filter(id=>RULES[id].f===b.dataset.fam);pcStart(ids,false,"famille");});
+ document.querySelectorAll(".pcchip").forEach(b=>b.onclick=()=>{const id=b.dataset.rule;pcStart([id],pcStat(id)==="revoir","une");});
+ show("pc");$("pcBody").scrollTop=0;}
+function pcStart(q,learn,kind){SAVE.pcRun={q,i:0,learn,kind,phase:learn?"learn":"ask",res:{ok:0,ko:0},ans:[]};save();show("pcq");renderPCQ();}
+
+/* ---------- une règle ---------- */
+let PCA=[];
+function pcId(){const r=SAVE.pcRun;return r&&r.q[r.i];}
+function bigRule(id,noIco){return `<div class="pcrule">${ruleCard(id,noIco?"":`<div class="rico">${IC(id)}</div>`)}</div>`;}
+function renderPCQ(){const run=SAVE.pcRun;if(!run)return openPC();
+ if(run.i>=run.q.length)return pcEnd();
+ const id=pcId(),r=RULES[id],kind=r.k==="D"?"la définition":"la propriété";
+ $("pcqTitle").innerHTML=`🧠 Par cœur<small>Règle ${run.i+1} sur ${run.q.length}${run.kind==="revoir"?" · à revoir":""}</small>`;
+ const head=`<div class="pchead ${r.k}"><div class="pcbig">${IC(id)}</div><div><span class="kindchip ${r.k}">${r.k==="D"?"Définition":"Propriété"}</span><div class="pctitle">${esc(r.t)}</div><div class="pcfamn">${FAMS.find(f=>f.id===r.f).ic} ${esc(FAMS.find(f=>f.id===r.f).n)}</div></div></div>`;
+ let h="";const ph=run.phase;
+ if(ph==="learn"){h=`<div class="pcbox">${bigRule(id)}<div class="method">Cette règle est à revoir. Lis-la en entier, trois fois, à voix haute. Puis appuie sur le bouton : elle sera cachée et tu la réciteras.</div><div class="row"><button class="brass bigbtn green" id="pcReady">Je la cache et je la récite ➡</button></div></div>`;}
+ else if(ph==="ask"){h=`<div class="pcbox">${head}<div class="pcprompt">🗣️ <b>Lucas</b>, récite à voix haute ${kind} : « ${esc(r.t)} ». Mot à mot.</div>
+  <div class="row"><button class="brass bigbtn" id="pcPapa">🗣️ Dis-le à papa</button><button class="brass bigbtn" id="pcTiles">🧩 Reconstruis-la avec les étiquettes</button></div></div>`;}
+ else if(ph==="papa"){h=`<div class="pcbox">${head}<div class="pcprompt">👨 <b>Papa</b>, Lucas récite. Suis le texte : tous les mots importants doivent y être.</div>${bigRule(id,true)}
+  <div class="row"><button class="brass bigbtn green hold" id="pcOk"><span class="fillbar"></span>✅ Papa valide (appuie 1 seconde)</button><button class="brass bigbtn red" id="pcKo">🔁 Pas encore</button></div></div>`;}
+ else if(ph==="tiles"){const ch=pcChunks(r.x);const pool=shuffle(ch.map((t,i)=>i),rng(pcSeed(id)));run.pool=pool;
+  h=`<div class="pcbox">${head}<div class="pcprompt">🧩 Glisse les étiquettes dans l'ordre pour reconstruire ${kind}, ou touche-les. Touche une étiquette posée pour la retirer.</div>
+  <div class="ansline pcans" data-drop="pcans" id="pcAns"></div><div class="pool" id="pcPool">${pool.map(i=>`<button class="tile" data-i="${i}">${esc(ch[i])}</button>`).join("")}</div>
+  <div class="row"><button class="brass bigbtn green" id="pcCheck" disabled>Vérifier</button><button class="brass" id="pcClear">Effacer</button><button class="brass" id="pcBackAsk">⬅ Plutôt réciter à papa</button></div></div>`;}
+ else if(ph==="done"){const ok=run.v;h=`<div class="pcbox"><div class="${ok?"okmsg":"why"} pcverdict">${ok?`✅ Sue ! Bravo Lucas. Relis-la une dernière fois en entier.`:`🔁 À revoir. Lis-la en entier, à voix haute. Elle t'attend dans la liste « À revoir ».`}</div>${run.tryTxt?`<div class="pctry"><b>Ta reconstruction :</b> ${run.tryTxt}</div>`:""}${bigRule(id)}
+  <div class="row"><button class="brass bigbtn green" id="pcNext">Continuer ➡</button></div></div>`;}
+ $("pcqBody").innerHTML=h;$("pcqBody").scrollTop=0;
+ if(ph==="learn")$("pcReady").onclick=()=>{run.phase="ask";save();renderPCQ();};
+ if(ph==="ask"){$("pcPapa").onclick=()=>{run.phase="papa";save();renderPCQ();};$("pcTiles").onclick=()=>{run.phase="tiles";PCA=[];save();renderPCQ();};}
+ if(ph==="papa"){holdBtn($("pcOk"),900,()=>pcAnswer(true,"papa"));$("pcKo").onclick=()=>pcAnswer(false,"papa");}
+ if(ph==="tiles"){PCA=[];document.querySelectorAll("#pcPool .tile").forEach(t=>dragify(t,{onDrop:(z,dz,ev)=>{if(z==="pcans")pcAdd(+t.dataset.i,ev);},onTap:()=>pcAdd(+t.dataset.i)}));
+  $("pcCheck").onclick=pcCheck;$("pcClear").onclick=()=>{PCA=[];pcDraw();};$("pcBackAsk").onclick=()=>{run.phase="ask";save();renderPCQ();};pcDraw();}
+ if(ph==="done")$("pcNext").onclick=()=>{run.i++;run.phase=run.learn?"learn":"ask";run.tryTxt=null;run.v=null;save();renderPCQ();};}
+function pcAdd(i,ev){if(PCA.includes(i))return;let pos=PCA.length;
+ if(ev&&ev.clientX!=null){const tiles=[...document.querySelectorAll("#pcAns .tile")];for(let k=0;k<tiles.length;k++){const r=tiles[k].getBoundingClientRect();if(ev.clientY<r.bottom&&ev.clientY>r.top-4&&ev.clientX<r.left+r.width/2){pos=k;break;}if(ev.clientY<r.top-4){pos=k;break;}}}
+ PCA.splice(pos,0,i);SND.drop();pcDraw();}
+function pcDraw(){const ch=pcChunks(RULES[pcId()].x);const line=$("pcAns");if(!line)return;
+ line.innerHTML=PCA.length?PCA.map(i=>`<button class="tile" data-a="${i}">${esc(ch[i])}</button>`).join(""):`<span class="lead pchint">Glisse ici les étiquettes, dans l'ordre</span>`;
+ line.querySelectorAll(".tile").forEach(t=>t.onclick=()=>{PCA=PCA.filter(x=>x!==+t.dataset.a);SND.later();pcDraw();});
+ document.querySelectorAll("#pcPool .tile").forEach(t=>t.classList.toggle("used",PCA.includes(+t.dataset.i)));
+ $("pcCheck").disabled=PCA.length!==ch.length;}
+function pcCheck(){const ch=pcChunks(RULES[pcId()].x);const ok=PCA.length===ch.length&&PCA.every((i,k)=>ch[i]===ch[k]);
+ if(!ok)SAVE.pcRun.tryTxt=PCA.map((i,k)=>ch[i]===ch[k]?esc(ch[i]):`<span class="bad">${esc(ch[i])}</span>`).join(" ");
+ pcAnswer(ok,"tiles");}
+function pcAnswer(ok,how){const run=SAVE.pcRun;if(!run||run.phase==="done")return;const id=pcId();
+ const s=SAVE.pc[id]||{s:"new",ok:0,ko:0};s.s=ok?"sue":"revoir";if(ok)s.ok++;else s.ko++;s.d=Date.now();s.how=how;SAVE.pc[id]=s;
+ if(ok){run.res.ok++;SAVE.stats.papaOk+=how==="papa"?1:0;}else{run.res.ko++;SAVE.stats.papaKo+=how==="papa"?1:0;}
+ run.v=ok;run.phase="done";save();SND[ok?"win":"later"]();renderPCQ();if(ok)setTimeout(()=>sparks(document.querySelector(".pcverdict"),14),60);}
+function pcEnd(){const run=SAVE.pcRun;const c=pcCounts();const res=run.res;SAVE.pcRun=null;save();
+ $("pcqTitle").innerHTML=`🧠 Par cœur<small>Séance terminée</small>`;
+ $("pcqBody").innerHTML=`<div class="endbox"><div style="font-size:50px">🧠</div><h2 style="color:#ffd77a;font-family:Georgia,serif;margin:6px 0">Séance terminée</h2>
+  <p style="font-size:19px">✅ ${res.ok} sue${res.ok>1?"s":""} · 🔁 ${res.ko} à revoir</p><p>En tout : ${c.sue} règles sues sur ${c.tot}. ${c.rev?c.rev+" à revoir.":"Rien à revoir !"}</p>
+  <div class="homebar">${c.rev?`<button class="brass bigbtn red" id="pcEndRev">🔁 ${c.rev>1?"Revoir les "+c.rev+" règles à revoir":"Revoir la règle à revoir"}</button>`:""}<button class="brass bigbtn" id="pcEndBack">🧠 Retour au mode Par cœur</button></div></div>`;
+ if($("pcEndRev"))$("pcEndRev").onclick=()=>pcStart(RIDS.filter(id=>pcStat(id)==="revoir"),true,"revoir");
+ $("pcEndBack").onclick=openPC;SND.level&&SND.level();}
+/* pour les tests automatiques */
+window.__PC=()=>{const run=SAVE.pcRun;if(!run||!$("pcq").classList.contains("on"))return null;const id=pcId();return {phase:run.phase,id,i:run.i,n:run.q.length,learn:run.learn,chunks:id?pcChunks(RULES[id].x):null,pool:run.pool||null,placed:PCA.slice()};};
 
 /* ===== Déblocage du son sur iPad (partagé entre les jeux) =====
    1. Le contexte audio est créé et relancé dans un vrai geste (touchend, pointerup, click...).
